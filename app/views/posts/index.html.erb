@@ -7,6 +7,15 @@
   </div>
 
   <div class='list-posts'>
+    <ul>
+      <% @posts.each do |post| %>
+        <li>
+          <h4><%= post.title %></h4>
+          <p><%= truncate post.description, length: 25 %></p>
+          <p><%= link_to 'Veja mais', post_path(post) %></p>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div class='lists'>
