@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   end
 
   def new
+    @authors = Author.all
+    @categories = Category.all
     @post = Post.new
   end
 
