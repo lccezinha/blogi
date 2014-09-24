@@ -23,6 +23,8 @@ RSpec.describe PostsController, :type => :controller do
       get :index
       expect(assigns(:posts)).to match_array(posts)
     end
+
+    it_behaves_like 'load_authors_and_categories'
   end
 
   describe 'GET #new' do
@@ -42,24 +44,22 @@ RSpec.describe PostsController, :type => :controller do
       expect(assigns(:post)).to be_a_new(Post)
     end
 
-    it 'load all authors' do
-      author_one = create(:author)
-      author_two = create(:author)
+    it_behaves_like 'load_authors_and_categories'
+  end
 
-      authors = [author_one, author_two]
+  describe 'GET #show' do
+    context 'should find the right post' do
+      subject(:post) { create(:post) }
 
-      get :new
-      expect(assigns(:authors)).to match_array(authors)
-    end
+      it 'load the post' do
+        get :show, id: post.id
+        expect(assigns(:post)).to eq post
+      end
 
-    it 'load all categories' do
-      category_one = create(:category)
-      category_two = create(:category)
-
-      categories = [category_one, category_two]
-
-      get :new
-      expect(assigns(:categories)).to match_array(categories)
+      it 'render the tempalte' do
+        get :show, id: post.id
+        expect(response).to render_template('show')
+      end
     end
   end
 

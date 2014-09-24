@@ -1,0 +1,29 @@
+<div class='wrapper'>
+  <div class='form-search'>
+    <%= form_tag posts_path, method: :get do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag 'Buscar', name: nil %>
+    <% end %>
+  </div>
+
+  <div class='list-posts'>
+  </div>
+
+  <div class='lists'>
+    <div class='list-categories'>
+      <ul>
+        <% @categories.each do |category| %>
+          <li><%= category.name %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='list-authors'>
+      <ul>
+        <% @authors.each do |author| %>
+          <li><%= author.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

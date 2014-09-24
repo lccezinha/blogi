@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
+  before_action :load_resources, only: [:index, :new]
 
   def index
     @posts = Post.all
   end
 
+  def show
+    @post = Post.joins(:category, :author).find params[:id]
+  end
+
   def new
-    @authors = Author.all
-    @categories = Category.all
     @post = Post.new
   end
 
@@ -21,6 +24,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def load_resources
+    @authors = Author.all
+    @categories = Category.all
+  end
 
   def post_params
     params.require(:post).permit(:title, :description, :author_id, :category_id)
