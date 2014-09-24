@@ -44,14 +44,25 @@ RSpec.describe PostsController, :type => :controller do
   end
 
   describe 'POST #create' do
-    context 'when new post is create successfully' do
+    context 'when new post is create successfully redirect to index' do
       let(:author) { build(:author) }
       let(:category) { build(:category) }
 
       it do
         post :create, post: { title: 'Random', description: 'HAHA HUE BR', author_id: author.id, category_id: category.id }
 
-        expect(response).to redirect_to('posts/index')
+        expect(response).to redirect_to(posts_path)
+      end
+    end
+
+    context 'when new post invalid render new action' do
+      let(:author) { build(:author) }
+      let(:category) { build(:category) }
+
+      it do
+        post :create, post: { title: nil, description: 'HAHA HUE BR', author_id: author.id, category_id: category.id }
+
+        expect(response).to render_template('new')
       end
     end
   end
