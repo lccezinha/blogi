@@ -14,4 +14,5 @@ gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-ra
 group :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'shoulda-matchers'
 end
