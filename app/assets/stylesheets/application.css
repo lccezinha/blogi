@@ -14,5 +14,4 @@
  *= require_self
  */
 
-
-div.wrapper { width: 80%; }
+div.wrapper { width: 80%; margin: 0 auto; }

@@ -1,38 +1,56 @@
-<div class='wrapper'>
-  <div class='form-search'>
-    <%= form_tag posts_path, method: :get do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag 'Buscar', name: nil %>
-    <% end %>
-  </div>
+<div class="container">
+  <div class='row'>
 
-  <div class='list-posts'>
-    <ul>
-      <% @posts.each do |post| %>
-        <li>
-          <h4><%= post.title %></h4>
-          <p><%= truncate post.description, length: 25 %></p>
-          <p><%= link_to 'Veja mais', post_path(post) %></p>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class='lists'>
-    <div class='list-categories'>
-      <ul>
-        <% @categories.each do |category| %>
-          <li><%= category.name %></li>
-        <% end %>
-      </ul>
+    <div class="col-md-12">
+      <h1>Blogi
+        <p class="lead">Blog to study elasticsearch :D</p>
+      </h1>
     </div>
 
-    <div class='list-authors'>
-      <ul>
-        <% @authors.each do |author| %>
-          <li><%= author.name %></li>
+    <div class='col-md-12'>
+      <div class='form-search'>
+        <%= form_tag posts_path, class: 'form-horizontal', method: :get do %>
+          <div class='form-group'>
+            <%= text_field_tag :search, params[:search], class: 'full-text' %>
+            <%= submit_tag 'Buscar', name: nil, class: 'btn btn-info' %>
+          </div>
         <% end %>
-      </ul>
+      </div>
+    </div> <!-- col-md-12 -->
+
+  </div> <!-- row -->
+
+  <hr />
+
+  <div class='row'>
+
+    <div class='col-md-8'>
+      //
     </div>
-  </div>
-</div>
+
+    <div class='col-md-4'>
+      <div class='well'>
+        <ul class='nav nav-list'>
+          <li class='nav-header'>Autores</li>
+          <% @authors.each do |author| %>
+            <li><%= author.name %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class='well'>
+        <nav class="nav-sidebar">
+          <ul class='nav nav-list'>
+            <li class='nav-header'>Autores</li>
+            <% @authors.each do |author| %>
+              <li><%= author.name %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+
+  </div><!-- row -->
+
+</div><!-- container -->
