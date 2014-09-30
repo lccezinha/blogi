@@ -10,8 +10,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'will_paginate', '~> 3.0'
 gem "twitter-bootstrap-rails"
-#gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-#gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 group :test do
   gem 'capybara'

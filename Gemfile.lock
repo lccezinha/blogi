@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: e0f726e07fa5023b3c19426873d886aa55ad6ae2
+  specs:
+    elasticsearch-model (0.1.5)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,6 +53,14 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
+    elasticsearch (1.0.5)
+      elasticsearch-api (= 1.0.5)
+      elasticsearch-transport (= 1.0.5)
+    elasticsearch-api (1.0.5)
+      multi_json
+    elasticsearch-transport (1.0.5)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -50,6 +68,9 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    hashie (3.3.1)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (1.5.3)
@@ -66,6 +87,7 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.1)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     pg (0.17.1)
@@ -150,6 +172,8 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  elasticsearch-model!
+  elasticsearch-rails!
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
