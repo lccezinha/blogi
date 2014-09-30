@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 50).order(created_at: :desc)
   end
 
   def show

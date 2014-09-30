@@ -1,6 +1,8 @@
-<div class='show-post'>
-  <h3><%= @post.title %></h3>
-  <h6><%= @post.author.name %> - <%= @post.category.name %></h6>
-  <p><%= @post.description %></p>
-  <%= link_to 'Voltar', posts_path %>
-<end>
+<div class='container'>
+  <div class='show-post'>
+    <h3><%= @post.title %></h3>
+    <h6><%= @post.author.name %> - <%= @post.category.name %></h6>
+    <p><%= @post.description %></p>
+    <%= link_to 'Voltar', posts_path %>
+  <end>
+</div>

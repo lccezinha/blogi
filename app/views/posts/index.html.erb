@@ -1,56 +1,59 @@
-<div class="container">
+<div class='container'>
+
+  <div class='blog-header'>
+    <h1>Blogi</h1>
+  </div>
+
   <div class='row'>
-
-    <div class="col-md-12">
-      <h1>Blogi
-        <p class="lead">Blog to study elasticsearch :D</p>
-      </h1>
+    <div class="col-sm-12 blog-search">
+      <%= form_tag posts_path, class: 'form-horizontal', method: :get do %>
+        <div class='form-group'>
+          <%= text_field_tag :search, params[:search], class: 'full-text' %>
+          <%= submit_tag 'Buscar', name: nil, class: 'btn btn-info' %>
+          <%= link_to 'novo', new_post_path, class: 'btn bnt-success' %>
+        </div>
+      <% end %>
     </div>
-
-    <div class='col-md-12'>
-      <div class='form-search'>
-        <%= form_tag posts_path, class: 'form-horizontal', method: :get do %>
-          <div class='form-group'>
-            <%= text_field_tag :search, params[:search], class: 'full-text' %>
-            <%= submit_tag 'Buscar', name: nil, class: 'btn btn-info' %>
-          </div>
-        <% end %>
-      </div>
-    </div> <!-- col-md-12 -->
-
-  </div> <!-- row -->
-
-  <hr />
+  </div>
 
   <div class='row'>
 
-    <div class='col-md-8'>
-      //
+    <div class="col-sm-8 blog-main blog-main">
+      <% @posts.each do |post| %>
+        <div class='blog-post'>
+          <h2><%= link_to post.title, post_path(post) %></h2>
+          <p><%= truncate post.description, length: 20 %><p/>
+          <hr />
+        </div>
+      <% end %>
     </div>
 
-    <div class='col-md-4'>
-      <div class='well'>
-        <ul class='nav nav-list'>
-          <li class='nav-header'>Autores</li>
+    <div class='col-sm-3 col-sm-offset-1 blog-sidebar'>
+      <div class="sidebar-module">
+        <h4>Autores</h4>
+        <ol class="list-unstyled">
           <% @authors.each do |author| %>
             <li><%= author.name %></li>
           <% end %>
-        </ul>
+        </ol>
       </div>
 
-      <div class='well'>
-        <nav class="nav-sidebar">
-          <ul class='nav nav-list'>
-            <li class='nav-header'>Autores</li>
-            <% @authors.each do |author| %>
-              <li><%= author.name %></li>
-            <% end %>
-          </ul>
-        </nav>
+      <div class="sidebar-module">
+        <h4>Categorias</h4>
+        <ol class="list-unstyled">
+          <% @categories.each do |category| %>
+            <li><%= category.name %></li>
+          <% end %>
+        </ol>
       </div>
-
     </div>
 
-  </div><!-- row -->
+  </div> <!-- row -->
 
-</div><!-- container -->
+
+  <div class='row'>
+    <div class="col-sm-12 blog-search">
+      <%= will_paginate @posts %>
+    </div>
+  </div>
+</div>
