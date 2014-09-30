@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
 
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 50).order(created_at: :desc)
+    @posts = PostsSearchEngine.search term: params[:search_term]
+    respond_with @posts
   end
 
   def show

@@ -8,7 +8,7 @@
     <div class="col-sm-12 blog-search">
       <%= form_tag posts_path, class: 'form-horizontal', method: :get do %>
         <div class='form-group'>
-          <%= text_field_tag :search, params[:search], class: 'full-text' %>
+          <%= text_field_tag :search_term, params[:search_term], class: 'full-text' %>
           <%= submit_tag 'Buscar', name: nil, class: 'btn btn-info' %>
           <%= link_to 'novo', new_post_path, class: 'btn bnt-success' %>
         </div>
@@ -50,10 +50,4 @@
 
   </div> <!-- row -->
 
-
-  <div class='row'>
-    <div class="col-sm-12 blog-search">
-      <%= will_paginate @posts %>
-    </div>
-  </div>
 </div>
