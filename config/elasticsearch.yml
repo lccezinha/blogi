@@ -1,0 +1,5 @@
+development:
+  index: blogi
+
+test:
+  index: test.blogi

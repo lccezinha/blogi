@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  index_name 'blogi'
+  index_name AppConfig['index']
   document_type 'post'
 
   belongs_to :author
