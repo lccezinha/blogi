@@ -7,7 +7,7 @@ RSpec.describe Post, :type => :model do
   end
 
   it { expect(described_class).to respond_to(:search) }
-  it { expect(described_class).to respond_to(:as_indexed_json) }
+  it { expect(described_class.new).to respond_to(:as_indexed_json) }
 
   context 'associations' do
     it { should belong_to(:author) }
