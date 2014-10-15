@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
 
   def index
-    @posts = PostsSearchEngine.search term: params[:search_term]
-    respond_with @posts
+    @response = PostsSearchEngine.search term: params[:search_term]
+    @posts = @response.records
+    @facets = @response.response.facets
+    respond_with @posts, @facets
   end
 
   def show
