@@ -31,10 +31,8 @@
       <div class="sidebar-module">
         <h4>Autores</h4>
         <ol class="list-unstyled">
-          <% @facets.each do |_, facet_data| %>
-            <% facet_data.terms.each do |f| %>
-              <li><%= f['term'] %> - <%= f['count'] %></li>
-            <% end %>
+          <% @authors.each do |author| %>
+            <li><%= author.name %></li>
           <% end %>
         </ol>
       </div>
