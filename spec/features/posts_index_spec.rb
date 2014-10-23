@@ -7,7 +7,5 @@ RSpec.describe 'Listing all posts', :type => :controller do
 
   it 'list al posts' do
     visit posts_path
-
-
   end
 end
