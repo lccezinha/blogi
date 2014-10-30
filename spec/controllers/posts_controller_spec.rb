@@ -14,16 +14,6 @@ RSpec.describe PostsController, :type => :controller do
       expect(response).to render_template('index')
     end
 
-    # it 'load all posts' do
-    #   posts_one = create(:post)
-    #   posts_two = create(:post)
-
-    #   posts = [posts_one, posts_two]
-
-    #   get :index
-    #   expect(assigns(:posts)).to match_array(posts)
-    # end
-
     it_behaves_like 'load_authors_and_categories'
   end
 

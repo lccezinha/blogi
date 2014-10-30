@@ -7,5 +7,7 @@ RSpec.describe 'Listing all posts', :type => :controller do
 
   it 'list al posts' do
     visit posts_path
+
+    expect(page).to have_text("List Posts")
   end
 end

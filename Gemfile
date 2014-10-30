@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'will_paginate', '~> 3.0'
 gem "twitter-bootstrap-rails"
+gem 'chewy'
 
 group :test do
   gem 'capybara'
