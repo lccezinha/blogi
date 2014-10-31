@@ -4,4 +4,6 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :description, presence: true
+
+  update_index('blogi#post') { self }
 end
