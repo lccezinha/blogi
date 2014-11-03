@@ -23,7 +23,7 @@
       <% @posts.each do |post| %>
         <div class='blog-post'>
           <h2><%= link_to post.title, post_path(post) %></h2>
-          <p><%= truncate post.description, length: 20 %><p/>
+          <p><%= post.description %><p/>
           <hr />
         </div>
       <% end %>
