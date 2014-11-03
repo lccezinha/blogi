@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
 
   def index
-    @posts = Post.order('id DESC')
-    respond_with @posts
+    @search = BlogiSearch.new(params[:search_term])
+    @posts  = @search.search.only(:id).load(post: { scope: Post })
+    # @posts = Post.order('id DESC')
+    # respond_with @posts
   end
 
   def show
