@@ -11,7 +11,7 @@ class BlogiIndex < Chewy::Index
   define_type Post.includes(:author, :category), name: 'post' do
     field :title, analyzer: 'title'
     field :description
-    field :author, value: ->{ author.name }
-    field :category, value: ->{ category.name }
+    field :author, index: 'not_analyzed', value: ->{ author.name }
+    field :category, index: 'not_analyzed', value: ->{ category.name }
   end
 end
