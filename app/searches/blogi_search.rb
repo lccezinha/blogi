@@ -7,14 +7,14 @@ class BlogiSearch
   end
 
   def search
-    [match_all, query_string, facets].compact.reduce(:merge)
+    [match_all, query_string].compact.reduce(:merge)
   end
 
   def facets
     index.facets({
       author: { terms: { field: :author } },
       category: { terms: { field: :category } }
-    })
+    }).facets
   end
 
   private
