@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @search = BlogiSearch.new(params[:search_term])
-    @posts  = @search.search.only(:id).load(post: { scope: Post })
+    @posts  = @search.search.only(:id).load(posts: { scope: Post.all })
+    @facets = @search.facets
     # @posts = Post.order('id DESC')
     # respond_with @posts
   end

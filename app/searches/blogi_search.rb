@@ -1,17 +1,31 @@
 class BlogiSearch
   include ActiveModel::Model
-  attr_reader :query
-  Fields = [:title, :description, :author, :category]
+  Fields = [:title, :description]
 
-  def search
-    [query_string].compact.reduce(:merge)
+  def initialize(search_term)
+    @search_term = search_term
   end
 
-  def query_string
-    index.query(query_string: { fields: Fields, query: query, default_operator: 'or' }) if query?
+  def search
+    [match_all, query_string, facets].compact.reduce(:merge)
+  end
+
+  def facets
+    index.facets({
+      author: { terms: { field: :author } },
+      category: { terms: { field: :category } }
+    })
   end
 
   private
+
+  def match_all
+    index.query(match_all: {})
+  end
+
+  def query_string
+    index.query(query_string: { fields: Fields, query: @search_term, default_operator: 'and' }) if @search_term.present?
+  end
 
   def index
     BlogiIndex
