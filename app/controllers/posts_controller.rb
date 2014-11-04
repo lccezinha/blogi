@@ -8,6 +8,11 @@ class PostsController < ApplicationController
     respond_with @posts, @facets
   end
 
+  def by_category
+    blogi_search = BlogiSearch.new(params[:search_term])
+    @posts  = blogi_search.filter.only(:id).load(posts: { scope: Post.all })
+  end
+
   def show
     @post = Post.joins(:category, :author).find params[:id]
   end
