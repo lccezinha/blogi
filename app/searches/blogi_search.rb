@@ -1,7 +1,4 @@
 class BlogiSearch
-  include ActiveModel::Model
-  Fields = [:title, :description]
-
   def initialize(search_term)
     @search_term = search_term
   end
@@ -24,18 +21,22 @@ class BlogiSearch
   end
 
   def query_string
-    # index.query(query_string: { fields: Fields, query: @search_term, default_operator: 'and' }) if @search_term.present?
     query = {
       bool: {
-        should: {
-          match: {
-            title: {
-              query: @search_term,
-              operator: 'and',
-              boost: 10
+        should: [
+          {
+            match: {
+              title: {
+                query: @search_term,
+                operator: 'and',
+                boost: 10
+              }
             }
+          },
+          {
+            match: { description: @search_term }
           }
-        }
+        ]
       }
     }
     index.query(query) if @search_term.present?
