@@ -24,7 +24,21 @@ class BlogiSearch
   end
 
   def query_string
-    index.query(query_string: { fields: Fields, query: @search_term, default_operator: 'and' }) if @search_term.present?
+    # index.query(query_string: { fields: Fields, query: @search_term, default_operator: 'and' }) if @search_term.present?
+    query = {
+      bool: {
+        should: {
+          match: {
+            title: {
+              query: @search_term,
+              operator: 'and',
+              boost: 10
+            }
+          }
+        }
+      }
+    }
+    index.query(query) if @search_term.present?
   end
 
   def index
