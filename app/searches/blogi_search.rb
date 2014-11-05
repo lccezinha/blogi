@@ -1,6 +1,7 @@
 class BlogiSearch
-  def initialize(search_term)
-    @search_term = search_term
+  def initialize(params)
+    @search_term = params[:search_term]
+    @category    = params[:category]
   end
 
   def search
@@ -14,7 +15,12 @@ class BlogiSearch
     }).facets
   end
 
+  def filter_by_category
+    index.filter(term: { category: @category }) if @category.present?
+  end
+
   private
+
 
   def match_all
     index.query(match_all: {})

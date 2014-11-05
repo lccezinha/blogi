@@ -1,17 +1,18 @@
 class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
+  before_action :load_blogi_search, only: [:index, :by_category]
+  before_action :load_facets, only: [:index, :by_category]
 
   def index
-    blogi_search = BlogiSearch.new(params[:search_term])
-    @posts  = blogi_search.search.only(:id).load(posts: { scope: Post.all })
-    @facets = blogi_search.facets
+    @posts  = @blogi_search.search.only(:id).load(posts: { scope: Post.all })
     respond_with @posts, @facets
   end
 
-  # def by_category
-  #   blogi_search = BlogiSearch.new(params[:search_term])
-  #   @posts  = blogi_search.filter.only(:id).load(posts: { scope: Post.all })
-  # end
+  def by_category
+    blogi_search = BlogiSearch.new(params)
+    @posts  = blogi_search.filter_by_category.only(:id).load(posts: { scope: Post.all })
+    respond_with @posts, @facets, location: posts_path
+  end
 
   def show
     @post = Post.joins(:category, :author).find params[:id]
@@ -32,6 +33,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def load_blogi_search
+    @blogi_search = BlogiSearch.new(params)
+  end
+
+  def load_facets
+    @facets = @blogi_search.facets
+  end
 
   def load_resources
     @authors = Author.all

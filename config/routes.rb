@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :posts, only: [:index, :new, :create, :show]
+
+  get 'by_category/:category', to: 'posts#by_category', as: :by_category
+
   root to: 'posts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
