@@ -34,7 +34,7 @@
         <h4>Autores</h4>
         <ol class="list-unstyled">
           <% @facets['author']['terms'].each do |facet| %>
-            <li><%= facet['term']%> (<%= facet['count'] %>)</li>
+            <li><%= link_to "#{facet['term']}(#{facet['count']})", posts_path(author: facet['term']) %></li>
           <% end %>
         </ol>
       </div>
@@ -43,7 +43,7 @@
         <h4>Categorias</h4>
         <ol class="list-unstyled">
           <% @facets['category']['terms'].each do |facet| %>
-            <li><%= link_to "#{facet['term']}(#{facet['count']})", by_category_path(category: facet['term']) %></li>
+            <li><%= link_to "#{facet['term']}(#{facet['count']})", posts_path(category: facet['term']) %></li>
           <% end %>
         </ol>
       </div>

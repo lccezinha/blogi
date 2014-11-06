@@ -5,7 +5,7 @@ class BlogiSearch
   end
 
   def search
-    [match_all, query_string].compact.reduce(:merge)
+    [match_all, query_string, filter_by_category].compact.reduce(:merge)
   end
 
   def facets

@@ -4,14 +4,10 @@ class PostsController < ApplicationController
   before_action :load_facets, only: [:index, :by_category]
 
   def index
-    @posts  = @blogi_search.search.only(:id).load(posts: { scope: Post.all })
-    respond_with @posts, @facets
-  end
-
-  def by_category
     blogi_search = BlogiSearch.new(params)
-    @posts  = blogi_search.filter_by_category.only(:id).load(posts: { scope: Post.all })
-    respond_with @posts, @facets, location: posts_path
+    @posts  = blogi_search.search.only(:id).load(posts: { scope: Post.all })
+    @facets = blogi_search.facets
+    respond_with @posts, @facets
   end
 
   def show
@@ -35,11 +31,11 @@ class PostsController < ApplicationController
   private
 
   def load_blogi_search
-    @blogi_search = BlogiSearch.new(params)
+
   end
 
   def load_facets
-    @facets = @blogi_search.facets
+
   end
 
   def load_resources
