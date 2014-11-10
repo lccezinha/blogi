@@ -6,7 +6,7 @@ class BlogiSearch
   end
 
   def search
-    [match_all, query_string, filter_by_category, filter_by_author].compact.reduce(:merge)
+    [match_all, query_string, filter_by_category, filter_by_author, order_by_created_at].compact.reduce(:merge)
   end
 
   def facets
@@ -17,6 +17,10 @@ class BlogiSearch
   end
 
   private
+
+  def order_by_created_at
+    index.order(created_at: { order: :desc })
+  end
 
   def match_all
     index.query(match_all: {})
