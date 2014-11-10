@@ -1,1 +1,1 @@
-Testing [elasticsearch-rails](https://github.com/elasticsearch/elasticsearch-rails)
+Testing [Chewy](https://github.com/toptal/chewy)
