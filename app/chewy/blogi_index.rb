@@ -13,5 +13,6 @@ class BlogiIndex < Chewy::Index
     field :description
     field :author, index: 'not_analyzed', value: ->{ author.name }
     field :category, index: 'not_analyzed', value: ->{ category.name }
+    field :created_at, index: 'not_analyzed', type: 'date'
   end
 end
