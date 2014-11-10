@@ -1,12 +1,16 @@
 class BlogiSearch
+
+  PerPage = 5
+
   def initialize(params)
     @search_term = params[:search_term]
     @category    = params[:category]
     @author      = params[:author]
+    @page        = params[:page]
   end
 
   def search
-    [match_all, query_string, filter_by_category, filter_by_author, sort].compact.reduce(:merge)
+    [match_all, query_string, filter_by_category, filter_by_author, sort, size].compact.reduce(:merge)
   end
 
   def facets
@@ -19,7 +23,7 @@ class BlogiSearch
   private
 
   def size
-    index
+    index.query.per(PerPage).page(@page)
   end
 
   def sort

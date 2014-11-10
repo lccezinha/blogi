@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'will_paginate', '~> 3.0'
+gem 'kaminari'
 gem "twitter-bootstrap-rails"
 gem 'chewy'
 
