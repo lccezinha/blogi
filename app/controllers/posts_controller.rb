@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
   before_action :load_resources, only: [:index, :new]
-  before_action :load_blogi_search, only: [:index, :by_category]
-  before_action :load_facets, only: [:index, :by_category]
 
   def index
     blogi_search = BlogiSearch.new(params)
@@ -29,14 +27,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def load_blogi_search
-
-  end
-
-  def load_facets
-
-  end
 
   def load_resources
     @authors = Author.all
